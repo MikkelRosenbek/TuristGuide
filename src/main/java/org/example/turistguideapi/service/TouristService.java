@@ -23,6 +23,14 @@ public class TouristService {
         return touristRepository.getAttractionByName(name);
     }
 
+    public TouristAttraction addAttraction(TouristAttraction touristAttraction){
+        return touristRepository.addAttraction(touristAttraction);
+    }
+
+    public TouristAttraction updateAttraction(String name){
+        return touristRepository.updateAttraction(name);
+    }
+
 
 
 }

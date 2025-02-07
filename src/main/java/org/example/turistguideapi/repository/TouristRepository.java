@@ -5,10 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Repository
 public class TouristRepository {
     private List<TouristAttraction> attractionList = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
 
 
     public TouristRepository() {
@@ -30,5 +32,19 @@ public class TouristRepository {
         return current;
     }
 
+    public TouristAttraction addAttraction(TouristAttraction touristAttraction){
+         attractionList.add(touristAttraction);
+         return touristAttraction;
+    }
 
+    public TouristAttraction updateAttraction(String name){
+        TouristAttraction attractionToUpdate = getAttractionByName(name);
+        System.out.println("Nyt navn");
+        attractionToUpdate.setName(scanner.nextLine());
+        System.out.println("Ny beskrivelse");
+        attractionToUpdate.setDescription(scanner.nextLine());
+
+        System.out.println(attractionToUpdate.getName() + "\n" + attractionToUpdate.getDescription());
+        return attractionToUpdate;
+    }
 }
