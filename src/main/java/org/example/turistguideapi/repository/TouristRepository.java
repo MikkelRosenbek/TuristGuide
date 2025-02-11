@@ -37,14 +37,9 @@ public class TouristRepository {
          return touristAttraction;
     }
 
-    public TouristAttraction updateAttraction(String name){
-        TouristAttraction attractionToUpdate = getAttractionByName(name);
-        System.out.println("Nyt navn");
-        attractionToUpdate.setName(scanner.nextLine());
-        System.out.println("Ny beskrivelse");
-        attractionToUpdate.setDescription(scanner.nextLine());
-
-        System.out.println(attractionToUpdate.getName() + "\n" + attractionToUpdate.getDescription());
-        return attractionToUpdate;
+    public TouristAttraction updateAttraction(TouristAttraction newTourAttraction, TouristAttraction oldTourAttraction){
+        attractionList.remove(oldTourAttraction);
+        attractionList.add(newTourAttraction);
+        return newTourAttraction;
     }
 }

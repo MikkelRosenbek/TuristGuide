@@ -38,8 +38,8 @@ public class TouristController {
         return new ResponseEntity<>(newTouristAttraction, HttpStatus.CREATED);
     }
     @PostMapping("/update")
-    public ResponseEntity<TouristAttraction> updateAttraction(@RequestBody String name){
-        TouristAttraction touristAttraction = touristService.updateAttraction(name);
+    public ResponseEntity<TouristAttraction> updateAttraction(@RequestBody TouristAttraction newTouristAttraction){
+        TouristAttraction touristAttraction = touristService.updateAttraction(newTouristAttraction);
         return new ResponseEntity<>(touristAttraction,HttpStatus.OK);
     }
 

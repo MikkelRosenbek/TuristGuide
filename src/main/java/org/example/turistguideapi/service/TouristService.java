@@ -27,8 +27,12 @@ public class TouristService {
         return touristRepository.addAttraction(touristAttraction);
     }
 
-    public TouristAttraction updateAttraction(String name){
-        return touristRepository.updateAttraction(name);
+    public TouristAttraction updateAttraction(TouristAttraction newTourAttraction){
+        TouristAttraction old = touristRepository.getAttractionByName(newTourAttraction.getName());
+        if (old != null){
+            return touristRepository.updateAttraction(newTourAttraction, old);
+        }
+        return null;
     }
 
 
