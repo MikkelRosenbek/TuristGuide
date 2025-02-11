@@ -42,4 +42,13 @@ public class TouristRepository {
         attractionList.add(newTourAttraction);
         return newTourAttraction;
     }
+
+    public TouristAttraction deleteAttraction(TouristAttraction touristAttraction) {
+        TouristAttraction toDelete = getAttractionByName(touristAttraction.getName());
+        attractionList.remove(toDelete);
+        return touristAttraction;
+    }
+
+
+
 }

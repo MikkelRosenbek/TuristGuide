@@ -35,6 +35,9 @@ public class TouristService {
         return null;
     }
 
+    public TouristAttraction deleteAttraction(TouristAttraction touristAttraction){
+        return touristRepository.deleteAttraction(touristAttraction);
+    }
 
 
 }
