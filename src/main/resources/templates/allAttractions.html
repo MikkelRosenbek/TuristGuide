@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turistattraktioner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Turistattraktioner i Danmark</h1>
+</header>
+
+<div class="container">
+  <h2>Udforsk populære attraktioner</h2>
+  <ul id="attraction-list">
+  </ul>
+</div>
+
+<footer>
+  <p>Kontakt os på: turistguide@danmark.dk</p>
+  <a href="index.html">Tilbage til forsiden</a>
+</footer>
+
+<script>
+  // Hardkodede attraktioner (kan erstattes med API-kald)
+  const attractions = [
+    { name: "Tivoli", description: "Forlystelsespark i København" },
+    { name: "Den Lille Havfrue", description: "Kendt statue på Langelinje, København" }
+  ];
+
+  // Indsætter attraktioner i listen
+  const attractionList = document.getElementById("attraction-list");
+  attractions.forEach(attraction => {
+    let listItem = document.createElement("li");
+    listItem.innerHTML = `<strong>${attraction.name}</strong>: ${attraction.description}`;
+    attractionList.appendChild(listItem);
+  });
+</script>
+
+</body>
+</html>
