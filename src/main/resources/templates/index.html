@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Turistguide</title>
-  <link rel="stylesheet" href="Styles.css">
+  <link rel="stylesheet" href="/css/Styles.css">
 </head>
 <body>
   <header>
@@ -20,13 +22,14 @@
 
     <h2>Udvalgte Attraktioner</h2>
     <ul>
-      <li><a href="tivoli.html">Tivoli</a></li>
-      <li><a href="denLilleHavfrue.html">Den Lille Havfrue</a></li>
+      <li><a href="/attractions/attraction/tivoli">Tivoli</a></li>
+      <li><a href="/attractions/attraction/den%20Lille%20Havfrue">Den Lille Havfrue</a></li>
+      <!-- Tilføj flere attraktioner her -->
     </ul>
 
     <h2>Links</h2>
     <ul>
-      <li><a href="allAttractions.html">Se Alle Attraktioner</a></li>
+      <li><a href="attractions">Se Alle Attraktioner</a></li>
     </ul>
 
 

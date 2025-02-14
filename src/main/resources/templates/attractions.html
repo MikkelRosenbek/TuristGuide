@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turistattraktioner</title>
+  <link rel="stylesheet" href="/css/Styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Turistattraktioner i Danmark</h1>
+</header>
+
+<div class="container">
+  <h2>Udforsk populære attraktioner</h2>
+  <ul>
+    <li th:each="attraction : ${allAttractions}">
+      <strong th:text="${attraction.name}"></strong>:
+      <span th:text="${attraction.description}"></span>
+    </li>
+  </ul>
+  <a href="/" class="back-button">
+    <button>Tilbage til forsiden</button>
+  </a>
+</div>
+
+<footer>
+  <p>Kontakt os på: turistguide@danmark.dk</p>
+</footer>
+
+</body>
+</html>

@@ -1,14 +1,13 @@
 package org.example.turistguideapi.controller;
 
 import org.example.turistguideapi.model.TouristAttraction;
-import org.example.turistguideapi.repository.TouristRepository;
 import org.example.turistguideapi.service.TouristService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("attractions")
@@ -21,32 +20,55 @@ public class TouristController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<TouristAttraction>> getAllAttractions(){
-        List<TouristAttraction> attractions = touristService.getAllAttractions();
-        return new ResponseEntity<>(attractions, HttpStatus.OK);
+    public String getAllAttractions(Model model) {
+        List<TouristAttraction> allAttractions = touristService.getAllAttractions();
+        model.addAttribute("allAttractions", allAttractions);
+        return "attractions";
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<TouristAttraction> getAttractionByName(@RequestParam String name){
+    @GetMapping("attraction/{name}")
+    public String getAttractionByName(@PathVariable String name, Model model) {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
-        return new ResponseEntity<>(touristAttraction,HttpStatus.OK);
+        model.addAttribute("touristAttraction", touristAttraction);
+        return "attractionDetails";
+    }
+
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("touristAttraction", new TouristAttraction());
+        return "addAttraction";
     }
 
     @PostMapping("/add")
-    public ResponseEntity<TouristAttraction> addAttraction(@RequestBody TouristAttraction touristAttraction){
-        TouristAttraction newTouristAttraction = touristService.addAttraction(touristAttraction);
-        return new ResponseEntity<>(newTouristAttraction, HttpStatus.CREATED);
-    }
-    @PostMapping("/update")
-    public ResponseEntity<TouristAttraction> updateAttraction(@RequestBody TouristAttraction newTouristAttraction){
-        TouristAttraction touristAttraction = touristService.updateAttraction(newTouristAttraction);
-        return new ResponseEntity<>(touristAttraction,HttpStatus.OK);
+    public String addAttraction(@ModelAttribute TouristAttraction touristAttraction) {
+        touristService.addAttraction(touristAttraction);
+        return "redirect:/attractions";
     }
 
+    @GetMapping("/update/{id}")
+    public String showUpdateForm(@PathVariable UUID id, Model model) {
+        TouristAttraction touristAttraction = touristService.getAttractionById(id);
+        model.addAttribute("touristAttraction", touristAttraction);
+        return "updateAttraction";
+    }
+
+    @PostMapping("/update")
+    public String updateAttraction(@ModelAttribute TouristAttraction touristAttaction) {
+        touristService.updateAttraction(touristAttaction);
+        return "/redirect:/attractions";
+    }
+
+@GetMapping("/delete/{id}")
+public String showDeleteConfirmation(@PathVariable UUID id, Model model){
+        TouristAttraction touristAttraction = touristService.getAttractionById(id);
+        model.addAttribute("touristAttraction",touristAttraction);
+        return "deleteAttraction";
+}
+
     @PostMapping("/delete")
-    public ResponseEntity<TouristAttraction> deleteAttraction(@RequestBody TouristAttraction touristAttraction){
-        TouristAttraction deletedAttraction = touristService.deleteAttraction(touristAttraction);
-        return new ResponseEntity<>(deletedAttraction, HttpStatus.OK);
+    public String deleteAttraction(@ModelAttribute TouristAttraction touristAttraction) {
+        touristService.deleteAttraction(touristAttraction);
+        return "redirect:/attractions";
     }
 
 }

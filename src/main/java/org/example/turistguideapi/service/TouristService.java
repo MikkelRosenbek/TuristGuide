@@ -5,6 +5,7 @@ import org.example.turistguideapi.repository.TouristRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TouristService {
@@ -23,20 +24,22 @@ public class TouristService {
         return touristRepository.getAttractionByName(name);
     }
 
-    public TouristAttraction addAttraction(TouristAttraction touristAttraction){
-        return touristRepository.addAttraction(touristAttraction);
+    public void addAttraction(TouristAttraction touristAttraction){
+        touristRepository.addAttraction(touristAttraction);
     }
 
-    public TouristAttraction updateAttraction(TouristAttraction newTourAttraction){
-        TouristAttraction old = touristRepository.getAttractionByName(newTourAttraction.getName());
+    public void updateAttraction(TouristAttraction newTourAttraction){
+        TouristAttraction old = touristRepository.getAttractionById(newTourAttraction.getAttractionId());
         if (old != null){
-            return touristRepository.updateAttraction(newTourAttraction, old);
+            touristRepository.updateAttraction(newTourAttraction, old);
         }
-        return null;
+    }
+    public TouristAttraction getAttractionById(UUID id){
+        return touristRepository.getAttractionById(id);
     }
 
-    public TouristAttraction deleteAttraction(TouristAttraction touristAttraction){
-        return touristRepository.deleteAttraction(touristAttraction);
+    public void deleteAttraction(TouristAttraction touristAttraction){
+        touristRepository.deleteAttraction(touristAttraction);
     }
 
 

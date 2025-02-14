@@ -1,12 +1,20 @@
 package org.example.turistguideapi.model;
 
+import java.util.UUID;
+
 public class TouristAttraction {
     private String name;
     private String description;
+    private UUID attractionId;
 
     public TouristAttraction(String name, String description) {
         this.name = name;
         this.description = description;
+        this.attractionId = attractionId;
+    }
+
+    public TouristAttraction() {
+        this.attractionId = UUID.randomUUID();
     }
 
     public String getName() {
@@ -23,6 +31,14 @@ public class TouristAttraction {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setAttractionId(UUID attractionId) {
+        this.attractionId = attractionId;
+    }
+
+    public UUID getAttractionId() {
+        return attractionId;
     }
 }
 

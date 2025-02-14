@@ -5,17 +5,23 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.UUID;
 
 @Repository
 public class TouristRepository {
-    private List<TouristAttraction> attractionList = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
+    private final List<TouristAttraction> attractionList = new ArrayList<>();
+
 
 
     public TouristRepository() {
-        attractionList.add(new TouristAttraction("Tivoli", "Forlystelsespark i København"));
-        attractionList.add(new TouristAttraction("Den Lille Havfrue", "Kendt statue på Langelinje, København"));
+        TouristAttraction tivoli = new TouristAttraction("Tivoli", "Forlystelsespark i København");
+        tivoli.setAttractionId(UUID.randomUUID());
+        TouristAttraction denLilleHavfrue = new TouristAttraction("Den Lille Havfrue", "Kendt statue på Langelinje, København");
+        denLilleHavfrue.setAttractionId(UUID.randomUUID());
+
+        attractionList.add(tivoli);
+        attractionList.add(denLilleHavfrue);
+
     }
 
     public List<TouristAttraction> getAllAttractions(){
@@ -23,30 +29,35 @@ public class TouristRepository {
     }
 
     public TouristAttraction getAttractionByName(String name) {
-       TouristAttraction current = null;
         for (TouristAttraction attraction : attractionList) {
-            if (attraction.getName().equals(name)){
-                current = attraction;
+            if (attraction.getName().equalsIgnoreCase(name)){
+                return attraction;
             }
         }
-        return current;
+        return null;
+    }
+    public TouristAttraction getAttractionById(UUID id) {
+        for (TouristAttraction attraction : attractionList) {
+            if (attraction.getAttractionId().equals(id)){
+                return attraction;
+            }
+        }
+        return null;
     }
 
-    public TouristAttraction addAttraction(TouristAttraction touristAttraction){
+    public void addAttraction(TouristAttraction touristAttraction){
+        touristAttraction.setAttractionId(UUID.randomUUID());
          attractionList.add(touristAttraction);
-         return touristAttraction;
     }
 
-    public TouristAttraction updateAttraction(TouristAttraction newTourAttraction, TouristAttraction oldTourAttraction){
+    public void updateAttraction(TouristAttraction newTourAttraction, TouristAttraction oldTourAttraction){
         attractionList.remove(oldTourAttraction);
         attractionList.add(newTourAttraction);
-        return newTourAttraction;
     }
 
-    public TouristAttraction deleteAttraction(TouristAttraction touristAttraction) {
+    public void deleteAttraction(TouristAttraction touristAttraction) {
         TouristAttraction toDelete = getAttractionByName(touristAttraction.getName());
         attractionList.remove(toDelete);
-        return touristAttraction;
     }
 
 
