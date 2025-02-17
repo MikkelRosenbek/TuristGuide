@@ -18,9 +18,12 @@ public class TouristRepository {
         tivoli.setAttractionId(UUID.randomUUID());
         TouristAttraction denLilleHavfrue = new TouristAttraction("Den Lille Havfrue", "Kendt statue på Langelinje, København");
         denLilleHavfrue.setAttractionId(UUID.randomUUID());
+        TouristAttraction skraldebjerget = new TouristAttraction("Skraldebjerg", "Bakke lokaliseret i Herning");
+        skraldebjerget.setAttractionId(UUID.randomUUID());
 
         attractionList.add(tivoli);
         attractionList.add(denLilleHavfrue);
+        attractionList.add(skraldebjerget);
 
     }
 
