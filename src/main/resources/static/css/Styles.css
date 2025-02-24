@@ -164,7 +164,11 @@ button {
 button:hover {
     background: #A00D26;
     transform: scale(1.05);
+}
 
+.update_button {
+    display: inline-block;
+    margin-top: 20px;
 }
 
 

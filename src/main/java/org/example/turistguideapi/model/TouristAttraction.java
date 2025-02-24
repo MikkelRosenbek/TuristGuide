@@ -1,21 +1,24 @@
 package org.example.turistguideapi.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class TouristAttraction {
     private String name;
     private String description;
-    private UUID attractionId;
+    private String lokation;
+    private List<Tag> tag;
 
-    public TouristAttraction(String name, String description) {
+
+    public TouristAttraction(String name, String description, String lokation,List<String> tag) {
         this.name = name;
         this.description = description;
-        this.attractionId = attractionId;
+        this.lokation = lokation;
+        this.tag = new ArrayList<>();
     }
+    public TouristAttraction(){}
 
-    public TouristAttraction() {
-        this.attractionId = UUID.randomUUID();
-    }
 
     public String getName() {
         return name;
@@ -33,12 +36,5 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setAttractionId(UUID attractionId) {
-        this.attractionId = attractionId;
-    }
-
-    public UUID getAttractionId() {
-        return attractionId;
-    }
 }
 

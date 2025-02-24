@@ -29,15 +29,10 @@ public class TouristService {
     }
 
     public void updateAttraction(TouristAttraction newTourAttraction){
-        TouristAttraction old = touristRepository.getAttractionById(newTourAttraction.getAttractionId());
-        if (old != null){
-            touristRepository.updateAttraction(newTourAttraction, old);
+        if (newTourAttraction != null){
+            touristRepository.updateAttraction(newTourAttraction);
         }
     }
-    public TouristAttraction getAttractionById(UUID id){
-        return touristRepository.getAttractionById(id);
-    }
-
     public void deleteAttraction(TouristAttraction touristAttraction){
         touristRepository.deleteAttraction(touristAttraction);
     }

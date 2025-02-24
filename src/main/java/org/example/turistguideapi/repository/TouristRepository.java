@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class TouristRepository {
@@ -14,12 +13,9 @@ public class TouristRepository {
 
 
     public TouristRepository() {
-        TouristAttraction tivoli = new TouristAttraction("Tivoli", "Forlystelsespark i København");
-        tivoli.setAttractionId(UUID.randomUUID());
-        TouristAttraction denLilleHavfrue = new TouristAttraction("Den Lille Havfrue", "Kendt statue på Langelinje, København");
-        denLilleHavfrue.setAttractionId(UUID.randomUUID());
-        TouristAttraction skraldebjerget = new TouristAttraction("Skraldebjerg", "Bakke lokaliseret i Herning");
-        skraldebjerget.setAttractionId(UUID.randomUUID());
+        TouristAttraction tivoli = new TouristAttraction("Tivoli", "Forlystelsespark i København","København",(List.of("Børnevenlig")));
+        TouristAttraction denLilleHavfrue = new TouristAttraction("Den Lille Havfrue", "Kendt statue på Langelinje, København","København",List.of("Kunst"));
+        TouristAttraction skraldebjerget = new TouristAttraction("Skraldebjerget", "Bakke lokaliseret i Herning","Herning",List.of("Børnevenlig","Natur","Gratis"));
 
         attractionList.add(tivoli);
         attractionList.add(denLilleHavfrue);
@@ -39,23 +35,14 @@ public class TouristRepository {
         }
         return null;
     }
-    public TouristAttraction getAttractionById(UUID id) {
-        for (TouristAttraction attraction : attractionList) {
-            if (attraction.getAttractionId().equals(id)){
-                return attraction;
-            }
-        }
-        return null;
-    }
 
     public void addAttraction(TouristAttraction touristAttraction){
-        touristAttraction.setAttractionId(UUID.randomUUID());
          attractionList.add(touristAttraction);
     }
 
-    public void updateAttraction(TouristAttraction newTourAttraction, TouristAttraction oldTourAttraction){
-        attractionList.remove(oldTourAttraction);
-        attractionList.add(newTourAttraction);
+    public void updateAttraction(TouristAttraction newTourAttraction){
+        TouristAttraction existing = getAttractionByName(newTourAttraction.getName());
+        existing.setDescription(newTourAttraction.getDescription());
     }
 
     public void deleteAttraction(TouristAttraction touristAttraction) {

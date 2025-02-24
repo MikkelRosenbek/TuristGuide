@@ -14,19 +14,23 @@
 </header>
 
 <div class="container">
-    <form action="#" th:action="@{/attractions/add}" th:object="${touristAttraction}" method="post">
+    <form action="#" th:action="@{/add}" th:object="${touristAttraction}" method="post">
         <label for="name">Navn:</label>
         <input type="text" id="name" th:field="*{name}" required>
 
         <label for="description">Beskrivelse:</label>
         <input type="text" id="description" th:field="*{description}" required>
 
+        <label for="tag">Tags:</label>
+        <input type="checkbox" name="tag" id="tag" th:field="*{tag}" required>
+
         <button type="submit">Tilføj</button>
     </form>
-
-    <a href="/attractions">Tilbage til listen</a>
 </div>
+<nav>
+    <a th:href="@{/attractions}" class="back-button">
+        <button>Tilbage til listen</button></a>
+</nav>
 
 </body>
 </html>
->

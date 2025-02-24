@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("attractions")
+@RequestMapping()
 public class TouristController {
 
     private final TouristService touristService;
@@ -19,14 +19,14 @@ public class TouristController {
         this.touristService = touristService;
     }
 
-    @GetMapping("")
+    @GetMapping("/attractions")
     public String getAllAttractions(Model model) {
         List<TouristAttraction> allAttractions = touristService.getAllAttractions();
         model.addAttribute("allAttractions", allAttractions);
         return "attractions";
     }
 
-    @GetMapping("attraction/{name}")
+    @GetMapping("/attractions/{name}")
     public String getAttractionByName(@PathVariable String name, Model model) {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
@@ -45,27 +45,27 @@ public class TouristController {
         return "redirect:/attractions";
     }
 
-    @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable UUID id, Model model) {
-        TouristAttraction touristAttraction = touristService.getAttractionById(id);
+    @GetMapping("/attractions/update/{name}")
+    public String showUpdateForm(@PathVariable String name, Model model) {
+        TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
         return "updateAttraction";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/attractions/update/")
     public String updateAttraction(@ModelAttribute TouristAttraction touristAttaction) {
         touristService.updateAttraction(touristAttaction);
-        return "/redirect:/attractions";
+        return "redirect:/attractions";
     }
 
-@GetMapping("/delete/{id}")
-public String showDeleteConfirmation(@PathVariable UUID id, Model model){
-        TouristAttraction touristAttraction = touristService.getAttractionById(id);
+@GetMapping("/attractions/delete/{name}")
+public String showDeleteConfirmation(@PathVariable String name, Model model){
+        TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction",touristAttraction);
         return "deleteAttraction";
 }
 
-    @PostMapping("/delete")
+    @PostMapping("/attractions/delete/")
     public String deleteAttraction(@ModelAttribute TouristAttraction touristAttraction) {
         touristService.deleteAttraction(touristAttraction);
         return "redirect:/attractions";

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Attraction Details</title>
@@ -14,11 +15,12 @@
 <div class="container">
     <h2>Oplev <span th:text="${touristAttraction.name}"></span></h2>
     <p><span th:text="${touristAttraction.description}"></span></p>
-
-    <a href="/" class="back-button">
+</div>
+<nav>
+    <a th:href="@{/}" class="back-button">
         <button>Tilbage til forsiden</button>
     </a>
-</div>
+</nav>
 
 <footer>
     <p><strong>Kontakt</strong></p>

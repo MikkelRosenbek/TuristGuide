@@ -18,12 +18,24 @@
     <li th:each="attraction : ${allAttractions}">
       <strong th:text="${attraction.name}"></strong>:
       <span th:text="${attraction.description}"></span>
+      <a th:href="@{/attractions/update/{name}(name=${attraction.name})}" class="update_button">
+        <button>- Opdater</button>
+      </a>
+      <!--Generer en dynamisk URL ved at indsætte værdien af attraction.name i URL'en - Mellemrum bliver til %20-->
+      <a th:href="@{/attractions/delete/{name}(name=${attraction.name})}" class="update_button">
+        <button>- Slet</button>
+      </a>
     </li>
   </ul>
-  <a href="/" class="back-button">
-    <button>Tilbage til forsiden</button>
+  <a th:href="@{/add}">
+    <button>Tilføj attraktion</button>
   </a>
 </div>
+<nav>
+  <a th:href="@{/}" class="back-button">
+    <button>Tilbage til forsiden</button>
+  </a>
+</nav>
 
 <footer>
   <p>Kontakt os på: turistguide@danmark.dk</p>
