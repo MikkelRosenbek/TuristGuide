@@ -14,15 +14,23 @@
 </header>
 
 <div class="container">
-    <form action="#" th:action="@{/add}" th:object="${touristAttraction}" method="post">
+    <form action="#" th:action="@{/attractions/add}" th:object="${touristAttraction}" method="post">
         <label for="name">Navn:</label>
         <input type="text" id="name" th:field="*{name}" required>
 
         <label for="description">Beskrivelse:</label>
         <input type="text" id="description" th:field="*{description}" required>
 
-        <label for="tag">Tags:</label>
-        <input type="checkbox" name="tag" id="tag" th:field="*{tag}" required>
+        <label for="lokation">Lokation</label>
+        <input type="text" id="lokation" th:field="*{lokation}" required>
+
+        <label>Tags:</label>
+        <fieldset>
+        <div th:each="tag : ${tags}">
+            <input type="checkbox" th:field="*{tag}" th:value="${tag}" />
+            <label th:text="${tag.displayName}"></label>
+        </div>
+        </fieldset>
 
         <button type="submit">Tilføj</button>
     </form>

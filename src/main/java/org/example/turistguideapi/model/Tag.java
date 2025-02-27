@@ -1,7 +1,11 @@
 package org.example.turistguideapi.model;
 
 public enum Tag {
-    BØRNEVENLIG("Børnevenlig");
+    BØRNEVENLIG("Børnevenlig"),
+    GRATIS("Gratis"),
+    KUNST("Kunst"),
+    NATUR("Natur");
+
 
     private String displayName;
 

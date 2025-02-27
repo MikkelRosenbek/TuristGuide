@@ -1,5 +1,6 @@
 package org.example.turistguideapi.controller;
 
+import org.example.turistguideapi.model.Tag;
 import org.example.turistguideapi.model.TouristAttraction;
 import org.example.turistguideapi.service.TouristService;
 import org.springframework.stereotype.Controller;
@@ -33,13 +34,26 @@ public class TouristController {
         return "attractionDetails";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/attractions/tags/{name}")
+    public String getTagsByName(@PathVariable String name, Model model){
+        TouristAttraction touristAttraction = touristService.getAttractionByName(name);
+        model.addAttribute("touristAttraction", touristAttraction);
+        List<Tag> tagList = touristService.getAttractionsTagByName(name);
+        System.out.println("Attraction: " + touristAttraction.getName());
+        System.out.println("Tags: " + tagList);
+
+        model.addAttribute("tagList",tagList);
+        return "tags";
+    }
+
+    @GetMapping("/attractions/add")
     public String showAddForm(Model model) {
         model.addAttribute("touristAttraction", new TouristAttraction());
+        model.addAttribute("tags", Tag.values());
         return "addAttraction";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/attractions/add")
     public String addAttraction(@ModelAttribute TouristAttraction touristAttraction) {
         touristService.addAttraction(touristAttraction);
         return "redirect:/attractions";

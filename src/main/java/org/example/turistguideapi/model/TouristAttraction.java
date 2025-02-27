@@ -36,5 +36,20 @@ public class TouristAttraction {
         this.description = description;
     }
 
+    public List<Tag> getTag() {
+        return tag;
+    }
+
+    public void setLokation(String lokation) {
+        this.lokation = lokation;
+    }
+
+    public String getLokation() {
+        return lokation;
+    }
+
+    public void setTag(List<Tag> tag) {
+        this.tag = tag;
+    }
 }
 

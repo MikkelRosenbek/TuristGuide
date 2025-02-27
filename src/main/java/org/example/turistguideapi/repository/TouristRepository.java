@@ -1,9 +1,11 @@
 package org.example.turistguideapi.repository;
 
+import org.example.turistguideapi.model.Tag;
 import org.example.turistguideapi.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -13,7 +15,7 @@ public class TouristRepository {
 
 
     public TouristRepository() {
-        TouristAttraction tivoli = new TouristAttraction("Tivoli", "Forlystelsespark i København","København",(List.of("Børnevenlig")));
+        TouristAttraction tivoli = new TouristAttraction("Tivoli", "Forlystelsespark i København","København",List.of("Børnevenlig"));
         TouristAttraction denLilleHavfrue = new TouristAttraction("Den Lille Havfrue", "Kendt statue på Langelinje, København","København",List.of("Kunst"));
         TouristAttraction skraldebjerget = new TouristAttraction("Skraldebjerget", "Bakke lokaliseret i Herning","Herning",List.of("Børnevenlig","Natur","Gratis"));
 
@@ -34,6 +36,14 @@ public class TouristRepository {
             }
         }
         return null;
+    }
+    public List<Tag> getAttractionsTagByName(String name){
+        for (TouristAttraction attraction : attractionList){
+            if (attraction.getName().equalsIgnoreCase(name)){
+                return attraction.getTag();
+            }
+        }
+        return Collections.emptyList();
     }
 
     public void addAttraction(TouristAttraction touristAttraction){

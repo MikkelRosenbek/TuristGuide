@@ -1,5 +1,6 @@
 package org.example.turistguideapi.service;
 
+import org.example.turistguideapi.model.Tag;
 import org.example.turistguideapi.model.TouristAttraction;
 import org.example.turistguideapi.repository.TouristRepository;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,8 @@ public class TouristService {
         touristRepository.deleteAttraction(touristAttraction);
     }
 
+    public List<Tag> getAttractionsTagByName(String name){
+        return touristRepository.getAttractionsTagByName(name);
+    }
 
 }

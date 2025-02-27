@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Attraktion tags</title>
+    <link rel="stylesheet" href="/css/Styles.css">
+</head>
+<body>
+<header>
+    <h1>Tags</h1>
+</header>
+<div class="container">
+    <h2><span th:text="${touristAttraction.name}" ></span>'s tags:</h2>
+    <div>
+  <span th:each="tag : ${tagList}">
+    <span th:text="${tag.displayName}"></span>
+  </span>
+    </div>
+</div>
+
+<nav>
+    <a th:href="@{/attractions}" class="back-button">
+        <button>Tilbage til listen</button>
+    </a>
+</nav>
+
+<footer>
+    <p><strong>Kontakt</strong></p>
+    <p>info@TuristGuiden.dk</p>
+    <p>+45 98 76 54 32</p>
+</footer>
+</body>
+</html>

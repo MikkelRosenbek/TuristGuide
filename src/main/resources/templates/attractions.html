@@ -18,6 +18,12 @@
     <li th:each="attraction : ${allAttractions}">
       <strong th:text="${attraction.name}"></strong>:
       <span th:text="${attraction.description}"></span>
+      <span th:text="${attraction.lokation}"></span>
+
+
+      <a th:href="@{/attractions/tags/{name}(name=${attraction.name})}" class="update_button">
+        <button>Tags</button>
+      </a>
       <a th:href="@{/attractions/update/{name}(name=${attraction.name})}" class="update_button">
         <button>- Opdater</button>
       </a>
@@ -27,7 +33,7 @@
       </a>
     </li>
   </ul>
-  <a th:href="@{/add}">
+  <a th:href="@{/attractions/add}">
     <button>Tilføj attraktion</button>
   </a>
 </div>
