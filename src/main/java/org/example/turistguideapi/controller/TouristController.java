@@ -39,9 +39,6 @@ public class TouristController {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
         List<Tag> tagList = touristService.getAttractionsTagByName(name);
-        System.out.println("Attraction: " + touristAttraction.getName());
-        System.out.println("Tags: " + tagList);
-
         model.addAttribute("tagList",tagList);
         return "tags";
     }
@@ -49,11 +46,11 @@ public class TouristController {
     @GetMapping("/attractions/add")
     public String showAddForm(Model model) {
         model.addAttribute("touristAttraction", new TouristAttraction());
-        model.addAttribute("tags", Tag.values());
+        model.addAttribute("tagsList", Tag.values());
         return "addAttraction";
     }
 
-    @PostMapping("/attractions/add")
+    @PostMapping("/attractions/save")
     public String addAttraction(@ModelAttribute TouristAttraction touristAttraction) {
         touristService.addAttraction(touristAttraction);
         return "redirect:/attractions";
@@ -63,6 +60,9 @@ public class TouristController {
     public String showUpdateForm(@PathVariable String name, Model model) {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
+        List<Tag> tagList = List.of(Tag.values());
+        model.addAttribute("tagList",tagList);
+        model.addAttribute("tagsList", Tag.values());
         return "updateAttraction";
     }
 

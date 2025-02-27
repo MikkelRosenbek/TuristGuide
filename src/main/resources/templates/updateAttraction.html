@@ -18,7 +18,17 @@
         <input type="hidden" th:field="*{name}" />
 
         <label for="description">Beskrivelse:</label>
-        <input type="text" id="description" th:field="*{description}" required />
+        <input type="text" id="description" th:field="*{description}" />
+
+        <label for="lokation">Lokation:</label>
+        <input type="text" id="lokation" th:field="*{lokation}">
+
+        <label>Vælg Tags:</label>
+        <div th:each="tag : ${tagList}">
+            <input type="checkbox" th:field="*{tags}" th:value="${tag.name()}"
+                   th:checked="${#lists.contains(touristAttraction.tags, tag)}"/>
+            <label th:for="${tag.name()}" th:text="${tag.name()}"></label>
+        </div>
 
         <button type="submit">Opdater</button>
     </form>

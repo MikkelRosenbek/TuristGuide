@@ -40,7 +40,7 @@ public class TouristRepository {
     public List<Tag> getAttractionsTagByName(String name){
         for (TouristAttraction attraction : attractionList){
             if (attraction.getName().equalsIgnoreCase(name)){
-                return attraction.getTag();
+                return attraction.getTags();
             }
         }
         return Collections.emptyList();
@@ -53,6 +53,8 @@ public class TouristRepository {
     public void updateAttraction(TouristAttraction newTourAttraction){
         TouristAttraction existing = getAttractionByName(newTourAttraction.getName());
         existing.setDescription(newTourAttraction.getDescription());
+        existing.setLokation(newTourAttraction.getLokation());
+        existing.setTags(newTourAttraction.getTags());
     }
 
     public void deleteAttraction(TouristAttraction touristAttraction) {
