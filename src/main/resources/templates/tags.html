@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Attraktion tags</title>
-    <link rel="stylesheet" href="/css/Styles.css">
+    <link rel="stylesheet" th:href="@{/css/Styles.css}">
 </head>
 <body>
 <header>
@@ -14,7 +14,7 @@
 <div class="container">
     <h2><span th:text="${touristAttraction.name}" ></span>'s tags:</h2>
     <div>
-  <span th:each="tag : ${tagList}">
+  <span th:each="tag : ${touristAttraction.getTags()}">
     <span th:text="${tag.displayName}"></span>
   </span>
     </div>

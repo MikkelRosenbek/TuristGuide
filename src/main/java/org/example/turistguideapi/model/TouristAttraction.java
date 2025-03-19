@@ -6,19 +6,16 @@ import java.util.List;
 public class TouristAttraction {
     private String name;
     private String description;
-    private String lokation;
+    private Location lokation;
     private List<Tag> tags;
 
 
-    public TouristAttraction(String name, String description, String lokation,List<String> tags) {
+    public TouristAttraction(String name, String description, Location lokation,List<Tag> tags) {
         this.name = name;
         this.description = description;
         this.lokation = lokation;
-        this.tags = new ArrayList<>();
+        this.tags = tags;
 
-        for (String tag : tags){
-            this.tags.add(Tag.valueOf(tag.toUpperCase()));
-        }
     }
     public TouristAttraction(){}
 
@@ -43,12 +40,12 @@ public class TouristAttraction {
         return tags;
     }
 
-    public void setLokation(String lokation) {
-        this.lokation = lokation;
+    public Location getLokation() {
+        return lokation;
     }
 
-    public String getLokation() {
-        return lokation;
+    public void setLokation(Location lokation) {
+        this.lokation = lokation;
     }
 
     public void setTags(List<Tag> tag) {

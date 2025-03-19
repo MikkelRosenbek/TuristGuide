@@ -1,5 +1,7 @@
 package org.example.turistguideapi.controller;
 
+import org.example.turistguideapi.model.Location;
+import org.example.turistguideapi.model.Tag;
 import org.example.turistguideapi.model.TouristAttraction;
 import org.example.turistguideapi.service.TouristService;
 import org.junit.jupiter.api.AfterEach;
@@ -31,8 +33,8 @@ class TouristControllerTest {
 
     @BeforeEach
     void setUp() {
-       attraction1 = new TouristAttraction("Sankt Jørgen","Byens bedste hotel","Herning",List.of("børnevenlig"));
-       attraction2 = new TouristAttraction("Skraldebjerget","Dejlig bakke","Herning",List.of("Børnevenlig"));
+       attraction1 = new TouristAttraction("Sankt Jørgen","Byens bedste hotel",Location.HERNING,List.of(Tag.BØRNEVENLIG));
+       attraction2 = new TouristAttraction("Skraldebjerget","Dejlig bakke",Location.HERNING,List.of(Tag.BØRNEVENLIG));
         mockList = List.of(attraction1,attraction2);
     }
 
@@ -74,6 +76,7 @@ class TouristControllerTest {
     }
 
      */
+
 
     @Test
     void testGetAttractionByName() throws Exception{
