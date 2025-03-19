@@ -1,46 +1,86 @@
 <!DOCTYPE html>
-<html lang="en"
-
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="da">
 <head>
   <meta charset="UTF-8">
-  <title>Turistguide</title>
-  <link rel="stylesheet" href="/css/Styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turistattraktioner i Danmark</title>
+  <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-  <header>
-    <h1>Oplev Danmark</h1>
-  </header>
 
-
-  <div class="container">
-    <h2>Om turistguiden</h2>
-    <p>
-      Turistguiden hjælper dig med at finde spændende turistattraktioner i Danmark.
-      Uanset om du er lokal eller besøgende, giver vi dig inspiration til steder, du kan opleve.
-    </p>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Turistattraktioner i Danmark</h1>
+    <p>Oplev Danmarks flotteste og mest spændende steder</p>
+    <a href="#attractions" class="btn">Se Attraktioner</a>
   </div>
-  <nav class="container">
-    <h2>Udvalgte Attraktioner</h2>
-    <ul>
-      <li><a th:href="@{/attractions/tivoli}">Tivoli</a></li>
-      <li><a th:href="@{/attractions/den Lille Havfrue}">Den Lille Havfrue</a></li>
-    </ul>
+</section>
 
-    <h2>Links</h2>
+<!-- Navigation -->
+<header>
+  <nav>
     <ul>
-      <li><a th:href="@{/attractions}">Se Alle Attraktioner</a></li>
+      <li><a href="#about">Om Guiden</a></li>
+      <li><a href="#attractions">Attraktioner</a></li>
+      <li><a href="#contact">Kontakt</a></li>
     </ul>
   </nav>
+</header>
+
+<!-- About Touristguide -->
+<section id="about">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>Om Turistguiden</h2>
+      <p>Hos Turistguiden bestræber vi os på at hjælpe dig med at finde Damarks mest spændende oplevelser.
+      Det er ligegyldigt om du er til <strong>storbyferie, natur eller kultur</strong>, vi har masser af inspiration til din næste oplevelse.</p>
+      <p>Vi har samlet de mest spændende <span class="highlight">turistattraktioner</span>, skjulte perler og dragende events,
+      så du kan få en ny spændende oplevelse!</p>
+    </div>
+    <div class="about-image">
+      <img th:src="@{/Images/Udforsk.jpg}" alt="Udforsk Danmark">
+    </div>
+  </div>
+</section>
+
+<!-- Attractions -->
+<section id="attractions">
+  <h2> Populære Attraktioner</h2>
+  <div class="grid-container">
+
+    <!-- Tivoli -->
+    <a href="/attractions/Tivoli" class="grid-item">
+      <img th:src="@{/Images/Tivoli.jpg}" alt="Tivoli">
+      <div class="overlay">Tivoli</div>
+    </a>
+
+    <!-- Den Lille Havfrue -->
+    <a href="/attractions/DenLilleHavfrue" class="grid-item">
+      <img th:src="@{/Images/DenLilleHavfrue.jpg}" alt="Den Lille Havfrue">
+      <div class="overlay">Den Lille Havfrue</div>
+    </a>
+
+    <!-- Skraldebjerget -->
+    <a href="/attractions/Skraldebjerget" class="grid-item">
+      <img th:src="@{/Images/Skraldebjerget.jpg}" alt="Skraldebjerget">
+      <div class="overlay">Skraldebjerget</div>
+    </a>
+  </div>
+
+  <div class="attractions-button">
+    <a href="/attractions" class="btn-large">Se alle Attraktioner</a>
+  </div>
+</section>
 
 
-
-  <footer>
-    <p><Strong>Kontakt</Strong></p>
-    <p>info@TuristGuiden.dk</p>
-    <p> +45 98 76 54 32</p>
-  </footer>
-
+<!-- Footer -->
+<footer id="contact">
+  <p><strong>Kontakt</strong></p>
+  <p>Email: <a href="mailto:info@Turistguiden.dk">info@Turistguiden.dk</a></p>
+  <p>Telefon: +45 98 76 54 32</p>
+  <p>Adresse: Rejsevej 69, 2200 København </p>
+</footer>
 
 </body>
 </html>
