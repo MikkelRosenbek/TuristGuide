@@ -3,6 +3,7 @@ package org.example.turistguideapi.repository;
 import org.example.turistguideapi.model.Location;
 import org.example.turistguideapi.model.Tag;
 import org.example.turistguideapi.model.TouristAttraction;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -11,9 +12,15 @@ import java.util.List;
 
 @Repository
 public class TouristRepository {
+
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
+    @Value("${spring.datasource.username}")
+    private String username;
+    @Value("${spring.datasource.password}")
+    private String password;
+
     private JdbcTemplate jdbcTemplate;
-
-
 
     public TouristRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

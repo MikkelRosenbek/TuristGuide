@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Turistattraktioner i Danmark</title>
-  <link rel="stylesheet" href="Styles.css">
+  <link th:href="@{static/css/Styles.css}" rel="stylesheet" >
 </head>
 <body>
 
@@ -50,19 +50,19 @@
   <div class="grid-container">
 
     <!-- Tivoli -->
-    <a href="/attractions/Tivoli" class="grid-item">
+    <a th:href="@{/attractions/Tivoli}" class="grid-item">
       <img th:src="@{/Images/Tivoli.jpg}" alt="Tivoli">
       <div class="overlay">Tivoli</div>
     </a>
 
     <!-- Den Lille Havfrue -->
-    <a href="/attractions/DenLilleHavfrue" class="grid-item">
+    <a th:href="/attractions/DenLilleHavfrue" class="grid-item">
       <img th:src="@{/Images/DenLilleHavfrue.jpg}" alt="Den Lille Havfrue">
       <div class="overlay">Den Lille Havfrue</div>
     </a>
 
     <!-- Skraldebjerget -->
-    <a href="/attractions/Skraldebjerget" class="grid-item">
+    <a th:href="/attractions/Skraldebjerget" class="grid-item">
       <img th:src="@{/Images/Skraldebjerget.jpg}" alt="Skraldebjerget">
       <div class="overlay">Skraldebjerget</div>
     </a>
