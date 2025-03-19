@@ -14,7 +14,7 @@
 <div class="container">
     <h2><span th:text="${touristAttraction.name}" ></span>'s tags:</h2>
     <div>
-  <span th:each="tag : ${tagList}">
+  <span th:each="tag : ${touristAttraction.getTags()}">
     <span th:text="${tag.displayName}"></span>
   </span>
     </div>

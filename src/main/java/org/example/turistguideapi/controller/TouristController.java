@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping()
@@ -38,7 +37,6 @@ public class TouristController {
     public String getTagsByName(@PathVariable String name, Model model) {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
-        model.addAttribute("tagList", touristService.getAttractionsTagByName(name));
         return "tags";
     }
 
