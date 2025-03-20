@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Turistattraktioner i Danmark</title>
-  <link th:href="@{/static/Styles.css}" rel="stylesheet" >
+  <link th:href="@{/css/Styles.css}" rel="stylesheet" >
 </head>
 <body>
 
@@ -39,7 +39,7 @@
       så du kan få en ny spændende oplevelse!</p>
     </div>
     <div class="about-image">
-      <img th:src="@{/static/Images/Udforsk.jpg}" alt="Udforsk Danmark">
+      <img th:src="@{/Images/Udforsk.jpg}" alt="Udforsk Danmark">
     </div>
   </div>
 </section>
@@ -52,27 +52,27 @@
     <!-- Tivoli --> <!-- todo Virker ikke. Kan ikke vise billedet -->
 
     <a href="/attractions/Tivoli" class="grid-item">
-      <img th:src="@{/static/Images/Tivoli.jpg}" alt="Tivoli">
+      <img th:src="@{/Images/Tivoli.jpg}" alt="Tivoli">
       <div class="overlay">Tivoli</div>
     </a>
 
     <!-- Den Lille Havfrue --> <!-- todo Virker ikke. Kan ikke vise billedet -->
 
     <a href="/attractions/Denlillehavfrue" class="grid-item">
-      <img src="/static/Images/DenLilleHavfrue.jpg" alt="Den Lille Havfrue">
+      <img th:src="@{/Images/DenLilleHavfrue.jpg}" alt="Den Lille Havfrue">
       <div class="overlay">Den Lille Havfrue</div>
     </a>
 
     <!-- Skraldebjerget --> <!-- todo Virker ikke. Kan ikke vise billedet -->
 
     <a href="/attractions/Skraldebjerget" class="grid-item">
-      <img th:src="@{/static/Images/Skraldebjerget.jpg}" alt="Skraldebjerget">
+      <img th:src="@{/Images/Skraldebjerget.jpg}" alt="Skraldebjerget">
       <div class="overlay">Skraldebjerget</div>
     </a>
   </div>
 
   <div class="attractions-button">
-    <a href="/attractions" class="btn-large">Se alle Attraktioner</a> <!-- todo Knap peger ikke hen til noget -->
+    <a th:href="@{/attractions}" class="btn-large">Se alle Attraktioner</a> <!-- todo Knap peger ikke hen til noget -->
   </div>
 </section>
 

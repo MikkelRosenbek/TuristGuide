@@ -20,11 +20,12 @@ public class TouristRepository {
     @Value("${spring.datasource.password}")
     private String password;
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public TouristRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     public List<TouristAttraction> getAttractions(){
         String sql = """
                 SELECT Attractions.AttractionID, Attractions.Name, Attractions.Description,Locations.LocationName AS LocationName
@@ -37,7 +38,7 @@ public class TouristRepository {
                 Location.valueOf(rs.getString("LocationName").trim().toUpperCase()),
                 attractionsTag(rs.getInt("AttractionID"))
         );
-        return jdbcTemplate.query(sql,rowMapper);
+        return jdbcTemplate.query(sql, rowMapper);
     }
 
     public TouristAttraction getAttractionByName(String name) {
@@ -47,7 +48,7 @@ public class TouristRepository {
                 JOIN Locations ON Attractions.LocationID = Locations.LocationID
                 WHERE Attractions.Name = ?
                 """;
-        return jdbcTemplate.queryForObject(sql, new Object[]{name}, (rs,rowNum) -> new TouristAttraction(
+        return jdbcTemplate.queryForObject(sql, new Object[]{name}, (rs, rowNum) -> new TouristAttraction(
                 rs.getString("Name"),
                 rs.getString("Description"),
                 Location.valueOf(rs.getString("LocationName").trim().toUpperCase()),
@@ -60,10 +61,10 @@ public class TouristRepository {
                 INSERT INTO Attractions (Name,Description,LocationID)
                 VALUES (?,?, (SELECT LocationID FROM Locations WHERE Name = ?))
                 ON DUPLICATE KEY UPDATE
-                Despription = VALUES(Despription),
+                Description = VALUES(Description),
                 LocationID = VALUES(LocationID)
                 """;
-        jdbcTemplate.update(sql,touristAttraction.getName(),touristAttraction.getDescription(),touristAttraction.getLokation());
+        jdbcTemplate.update(sql, touristAttraction.getName(), touristAttraction.getDescription(), touristAttraction.getLokation());
     }
 
     public void updateAttraction(TouristAttraction updatedAttraction){
@@ -72,13 +73,13 @@ public class TouristRepository {
                 SET Description = ?, LocationID = (SELECT LocationID FROM Locations WHERE Name = ?)
                 WHERE Name = ?
                 """;
-        jdbcTemplate.update(sql,updatedAttraction.getDescription(),updatedAttraction.getLokation(),updatedAttraction.getName());
+        jdbcTemplate.update(sql, updatedAttraction.getDescription(), updatedAttraction.getLokation(), updatedAttraction.getName());
 
         String deleteSQL = """
                 DELETE FROM AttractionTag
-                WHERE AttractionID = SELECT AttractionID FROM Attractions WHERE Name = ?)
+                WHERE AttractionID = (SELECT AttractionID FROM Attractions WHERE Name = ?)
                 """;
-        jdbcTemplate.update(deleteSQL,updatedAttraction.getName());
+        jdbcTemplate.update(deleteSQL, updatedAttraction.getName());
 
         String insertNewTag = """
                 INSERT INTO AttractionTag (AttractionID, TagID)
@@ -88,7 +89,7 @@ public class TouristRepository {
                 )
                 """;
         for (Tag tag : updatedAttraction.getTags()){
-            jdbcTemplate.update(insertNewTag,updatedAttraction.getName(),tag.getDisplayName());
+            jdbcTemplate.update(insertNewTag, updatedAttraction.getName(), tag.getDisplayName());
         }
     }
 
@@ -96,10 +97,11 @@ public class TouristRepository {
         TouristAttraction deleteAttraction = getAttractionByName(touristAttraction.getName());
         if (deleteAttraction != null){
             String sql = "DELETE FROM Attractions WHERE Name = ?";
-            jdbcTemplate.update(sql,touristAttraction);
+            jdbcTemplate.update(sql, touristAttraction.getName());
         }
         return deleteAttraction;
     }
+
     private List<Tag> attractionsTag(int attractionID){
         String sql = """
                 SELECT Tags.TagName
@@ -107,6 +109,6 @@ public class TouristRepository {
                 JOIN AttractionTag ON Tags.TagID = AttractionTag.TagID
                 WHERE AttractionTag.AttractionID = ?
                 """;
-        return jdbcTemplate.query(sql,(rs,rowNum) -> Tag.valueOf(rs.getString("Name")),attractionID);
+        return jdbcTemplate.query(sql, (rs, rowNum) -> Tag.valueOf(rs.getString("TagName")), attractionID);
     }
 }
