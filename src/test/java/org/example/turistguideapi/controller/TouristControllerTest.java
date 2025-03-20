@@ -31,6 +31,7 @@ class TouristControllerTest {
     @MockitoBean
     private TouristService touristService;
 
+
     @BeforeEach
     void setUp() {
        attraction1 = new TouristAttraction("Sankt Jørgen","Byens bedste hotel",Location.HERNING,List.of(Tag.BØRNEVENLIG));
