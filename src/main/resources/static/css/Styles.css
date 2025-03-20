@@ -8,7 +8,7 @@ body {
 }
 
 .hero {
-    background: url("images/København.jpg") center/cover no-repeat;
+    background: url('Images/København.jpg') center/cover no-repeat;
     height: 45vh;
     display: flex;
     align-items: center;
@@ -184,6 +184,13 @@ h2 {
     display: block;
 }
 
+.grid-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
 .overlay {
     position: absolute;
     bottom: 0;
@@ -195,6 +202,10 @@ h2 {
     padding: 15px;
     font-size: 18px;
     font-weight: bold;
+}
+
+.grid-item:hover .overlay {
+    background: rgba(0, 0, 0, 0.8);
 }
 
 /* Footer */

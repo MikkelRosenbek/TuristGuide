@@ -1,0 +1,273 @@
+/* Root Variabler */
+:root {
+    --primary-color: #0073e6;
+    --secondary-color: #005bb5;
+    --light-gray: #f8f8f8;
+    --dark-gray: #333;
+    --white: #fff;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    text-align: center;
+}
+
+/* Header */
+header {
+    background: var(--white);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Content Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+/* Typography */
+h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+strong {
+    color: var(--dark-gray);
+    font-weight: bold;
+}
+
+/* Image Styling */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin: 20px 0;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background: #cc0000;
+}
+
+.btn-delete:hover {
+    background: #a00000;
+}
+
+.btn-large {
+    display: block;
+    background: #0073e6;
+    color: white;
+    padding: 15px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    transition: background 0.3s;
+}
+
+.btn-large:hover {
+    background: #005bb5;
+}
+
+/* Tags Styling */
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+li {
+    background: #ddd;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+/* Root Variabler
+:root {
+    --primary-color: #0073e6;
+    --secondary-color: #005bb5;
+    --light-gray: #f8f8f8;
+    --dark-gray: #333;
+    --white: #fff;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General Styling
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    text-align: center;
+}
+
+/* Header
+header {
+    background: var(--white);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Content Container
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+/* Typography
+h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+strong {
+    color: var(--dark-gray);
+    font-weight: bold;
+}
+
+/* Image Styling
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin: 20px 0;
+}
+
+/* Buttons
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background: #cc0000;
+}
+
+.btn-delete:hover {
+    background: #a00000;
+}
+
+.btn-large {
+    display: block;
+    background: #0073e6;
+    color: white;
+    padding: 15px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    transition: background 0.3s;
+}
+
+.btn-large:hover {
+    background: #005bb5;
+}
+
+/* Tags Styling
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+li {
+    background: #ddd;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+/* Footer
+footer {
+    background: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}

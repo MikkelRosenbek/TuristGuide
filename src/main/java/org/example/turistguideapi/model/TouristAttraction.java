@@ -10,7 +10,7 @@ public class TouristAttraction {
     private List<Tag> tags;
 
 
-    public TouristAttraction(String name, String description, Location lokation,List<Tag> tags) {
+    public TouristAttraction(String name, String description, Location lokation, List<Tag> tags) {
         this.name = name;
         this.description = description;
         this.lokation = lokation;

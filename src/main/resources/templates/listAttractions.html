@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alle Attraktioner</title>
+    <link th:href="@{/static/listAttractions.css}">
+</head>
+
+<body>
+<header>Alle attraktioner</header>
+
+<div class="container">
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Beskrivelse</th>
+            <th>Tags</th>
+            <th>Rediger</th>
+            <th>Slet</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="attraction : ${allAttractions}">
+                <td th:text="${attraction.name}"></td>
+
+                <td th:text="${attraction.description}"></td>
+
+                <td>
+                    <a th:href="@{allAttractions/{name}/tag(name=${attraction.name})}" class="btn">Tag</a>
+                </td>
+
+                <td>
+                    <a th:href="@{allAttractions/{name}/edit(name=${attraction.name})}" class="btn">Rediger</a>
+                </td>
+
+             <td>
+                <form th:action="@{allAttractions/delete/{name}(name=${attraction.name})}" method="post"
+                      onsubmit="return confirm('Vil du slette denne attraktion?');">
+                </form>
+             </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/attractions/add}" class="btn-large">Tilføj Attraktion</a>
+    <a th:href="@{/#attractions}" class="btn-large">Tilbage</a>
+</div>
+
+<!-- Footer -->
+<footer id="contact">
+    <p><strong>Kontakt</strong></p>
+    <p>Email: <a href="mailto:info@Turistguiden.dk">info@Turistguiden.dk</a></p>
+    <p>Telefon: +45 98 76 54 32</p>
+    <p>Adresse: Rejsevej 69, 2200 København </p>
+</footer>
+
+</body>
+</html>

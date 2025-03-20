@@ -23,14 +23,14 @@ public class TouristController {
     public String getAllAttractions(Model model) {
         List<TouristAttraction> allAttractions = touristService.getAllAttractions();
         model.addAttribute("allAttractions", allAttractions);
-        return "attractions";
+        return "listAttractions";
     }
 
     @GetMapping("/attractions/{name}")
     public String getAttractionByName(@PathVariable String name, Model model) {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
-        return "attractionDetails";
+        return "detailsAttraction";
     }
 
     @GetMapping("/attractions/tags/{name}")
@@ -58,7 +58,7 @@ public class TouristController {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
         model.addAttribute("tagList", List.of(Tag.values()));
-        return "updateAttraction";
+        return "addAttraction";
     }
 
     @PostMapping("/attractions/update/")
@@ -67,11 +67,12 @@ public class TouristController {
         return "redirect:/attractions";
     }
 
+    //Not sure if this gets used anywhere...
     @GetMapping("/attractions/delete/{name}")
     public String showDeleteConfirmation(@PathVariable String name, Model model) {
         TouristAttraction touristAttraction = touristService.getAttractionByName(name);
         model.addAttribute("touristAttraction", touristAttraction);
-        return "deleteAttraction";
+        return "redirect:/attractions";
     }
 
     @PostMapping("/attractions/delete/")

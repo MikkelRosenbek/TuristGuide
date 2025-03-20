@@ -4,31 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Attraktion tags</title>
-    <link rel="stylesheet" th:href="@{/css/Styles.css}">
+    <link rel="stylesheet" th:href="@{/static/tags.css}">
 </head>
+
 <body>
-<header>
-    <h1>Tags</h1>
-</header>
-<div class="container">
-    <h2><span th:text="${touristAttraction.name}" ></span>'s tags:</h2>
-    <div>
-  <span th:each="tag : ${touristAttraction.getTags()}">
-    <span th:text="${tag.displayName}"></span>
-  </span>
-    </div>
-</div>
 
-<nav>
-    <a th:href="@{/attractions}" class="back-button">
-        <button>Tilbage til listen</button>
-    </a>
-</nav>
+<h1 th:text="'Tags for ' + ${attraction.name}"></h1th:text></h1>
 
-<footer>
+<p><strong>By:</strong> <span th:text="${touristAttraction.getLokation().displayName}"></span></p>
+
+<h3>Tags:</h3>
+<ul>
+    <li th:each="tag : ${touristAttraction.getTags()}" th:text="${tag.displayName}"></li>
+</ul>
+
+<a th:href="@{/attractions}">
+    <button>Tilbage til liste</button>
+</a>
+
+<!-- Footer -->
+<footer id="contact">
     <p><strong>Kontakt</strong></p>
-    <p>info@TuristGuiden.dk</p>
-    <p>+45 98 76 54 32</p>
+    <p>Email: <a href="mailto:info@Turistguiden.dk">info@Turistguiden.dk</a></p>
+    <p>Telefon: +45 98 76 54 32</p>
+    <p>Adresse: Rejsevej 69, 2200 København </p>
 </footer>
+
 </body>
 </html>

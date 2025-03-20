@@ -1,44 +1,81 @@
 <!DOCTYPE html>
-<html lang="da"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Tilføj Attraktion</title>
-    <link rel="stylesheet" th:href="@{static/css/Styles.css}">
+    <title th:text="${touristAttraction != null and touristAttraction.name != null} ? 'Opdater ' + touristAttraction.name : 'Tilføj Attraktion'"></title>
+    <link rel="stylesheet" th:href="@{/static/addAttraction.css}">
 </head>
+
 <body>
+<div class="" align="center">
+    <div>
+        <h1 th:text="${touristAttraction != null and touristAttraction.name != null} ?
+        'Opdater' + touristAttraction.name : 'Tilføj Attraktion '"></h1>
 
-<header>
-    <h1>Tilføj en ny turistattraktion</h1>
-</header>
+        <form role="form"
+              method="post"
+              th:object="${touristAttraction}"
+              th:action="@{/attraction/update}"
+              th:if="${touristAttraction != null and touristAttraction.name != null}">
 
-<div class="container">
-    <form action="#" th:action="@{/attractions/save}" th:object="${touristAttraction}" method="post">
-        <label for="name">Navn:</label>
-        <input type="text" id="name" th:field="*{name}" required>
+            <form role="form"
+                  method="post"
+                  th:object="${touristAttraction}"
+                  th:action="@{/attraction/save}"
+                  th:unless="${touristAttraction != null and touristAttraction.name != null}">
 
-        <label for="description">Beskrivelse:</label>
-        <input type="text" id="description" th:field="*{description}" required>
 
-        <label for="lokation">Lokation</label>
-        <input type="text" id="lokation" th:field="*{lokation}" required>
+        <!-- Input name -->
+        <label for="name">Navn</label>
+            <input id="name" type="text" th:field="*{name}" required />
 
-        <label>Tags:</label>
-        <fieldset>
-        <div th:each="tag : ${tagsList}">
-            <input type="checkbox" th:field="*{tags}" th:value="${tag}" />
-            <label th:text="${tag.displayName}"></label>
-        </div>
-        </fieldset>
+        <br>
 
-        <button type="submit">Tilføj</button>
-    </form>
+        <!-- Input Description -->
+        <label for="description">Beskrivelse</label>
+                <textarea id="description" th:field="*{description}" required></textarea>
+
+
+        <!-- todo Location selection dropdown  virker ikke-->
+        <label for="location">Vælg lokation</label>
+                <select id="location" th:field="*{lokation}">
+                    <option value="">Vælg lokation</option>
+                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.displayName}"></option>
+                </select>
+
+
+                <br>
+
+                <!-- Tags Selection -->
+                <label>Vælg tags</label>
+                <div class="tags-container">
+                    <th:block th:each="tag : ${tags}">
+                        <input type="checkbox"
+                               th:field="*{tags}"
+                               th:value="${tag.id}"
+                               id="tag-[[${tag.id}]]"
+                        />
+                        <label th:for="${tag.id}" th:text="${tag.displayName}"></label>
+                    </th:block>
+                </div>
+
+        <br>
+
+        <!-- Submit Button -->
+        <button type="submit">Færdig</button>
+        <br/>
+        </form>
+        </form>
+    </div>
 </div>
-<nav>
-    <a th:href="@{/attractions}" class="back-button">
-        <button>Tilbage til listen</button></a>
-</nav>
+
+<!-- Footer -->
+<footer id="contact">
+    <p><strong>Kontakt</strong></p>
+    <p>Email: <a href="mailto:info@Turistguiden.dk">info@Turistguiden.dk</a></p>
+    <p>Telefon: +45 98 76 54 32</p>
+    <p>Adresse: Rejsevej 69, 2200 København </p>
+</footer>
 
 </body>
 </html>

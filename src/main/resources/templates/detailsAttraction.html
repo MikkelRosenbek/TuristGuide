@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Populære Attraktioner</title>
+    <link th:href="@{/static/detailsAttraction.css}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<header>
+    <h1>Detaljer om attraktionerne</h1>
+</header>
+
+<div class="container">
+    <div th:if="${touristAttraction}">
+        <p><Strong>Navn:</Strong> <span th:text="${touristAttraction.name()}"></span></p>
+        <p><Strong>Beskrivelse:</Strong><span th:text="${touristAttraction.description()}"></span></p>
+        <p><Strong>Lokation</Strong><span th:text="${touristAttraction.lokation()}"></span></p>
+
+
+        <!-- Show tags for attractions -->
+        <h3>Tags:</h3>
+        <ul>
+            <li th:each="tag : ${touristAttraction.tags()}" th:text="${tag}"></li>
+        </ul>
+
+        <!-- Image Attraction -->
+        <img th:src="@{'/Images/' + ${#strings.toLowerCase(#strings.replace(touristAttraction.name(), ' ', '-'))} + '.jpg'}"
+             th:alt="${touristAttraction.name()}"
+             onerror="this.onerror=null; this.src='/images/default.jpg';"/>
+
+        <br>
+
+        <!-- Buttons -->
+        <a th:href="@{/touristAttraction/{name}/edit(name=${touristAttraction.name})}" class="btn">Rediger</a>
+
+        <br>
+        <br>
+
+        <form th:action="@{/touristAttraction/delete/{name}(name=${touristAttraction.name})}" method="post"
+              onsubmit="return confirm('Vil du slette denne attraktion?');">
+              <button type="submit" class="btn btn-delete">Slet</button>
+        </form>
+
+        <br>
+
+        <!-- Back to Attractions Button -->
+        <a th:href="@{attractions}" class="btn-large">Tilbage</a>
+
+    </div>
+
+    <!-- Error Message -->
+    <div th:unless="${touristAttraction}">
+        <p> Ingen Attraktioner Fundet</p>
+        <a th:href="@{/attractions}" class="btn-large"> Tilbage til Hjem</a>
+    </div>
+</div>
+
+<footer id="contact">
+    <p><strong>Kontakt</strong></p>
+    <p>Email: <a href="mailto:info@Turistguiden.dk">info@Turistguiden.dk</a></p>
+    <p>Telefon: +45 98 76 54 32</p>
+    <p>Adresse: Rejsevej 69, 2200 København </p>
+</footer>
+
+</body>
+</html>
